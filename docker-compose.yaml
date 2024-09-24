@@ -10,6 +10,8 @@ services:
       - "11211:11211"
     networks:
       - databases
+    volumes:
+      - ./dataset:/dataset
   db_node2:
     image: couchbase:latest
     container_name: db_node2
