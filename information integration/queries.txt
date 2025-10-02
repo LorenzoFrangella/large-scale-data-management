@@ -1,0 +1,54 @@
+#### 1
+
+SELECT t4.player
+FROM 
+    (SELECT *
+     FROM fouls
+     WHERE committing_player = 'lebron james') AS t1
+JOIN 
+    played_in AS t2
+ON t1.committing_player = t2.player
+JOIN 
+    played_in AS t4
+ON t2.season = t4.season AND t2.team = t4.team;
+
+#### 2
+
+SELECT player
+FROM played_in 
+WHERE team = 'cleveland cavaliers'
+
+#### 3
+
+SELECT played_in.player 
+FROM (SELECT *
+	  FROM has_trained 
+	  WHERE has_trained.coach = 'herb brown') AS t1
+	  JOIN
+	  played_in
+	  ON t1.team = played_in.team
+
+#### 4
+
+SELECT *
+FROM coaches
+JOIN nba_players
+ON coaches.coach = nba_players.player
+
+#### 5
+
+
+SELECT c.season, c.full_name
+FROM nba_champions AS c
+JOIN played_in AS p
+ON c.season = p.season AND c.full_name = p.team
+WHERE p.player = 'kobe bryant';
+
+
+#### 6 
+
+SELECT t1.player
+FROM player_awards AS t1
+JOIN player_awards AS t2
+ON t1.player = t2.player AND t1.season != t2.season
+WHERE t1.award = 'nba mvp' and t2.award = 'nba mvp'
